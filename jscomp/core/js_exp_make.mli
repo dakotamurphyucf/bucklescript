@@ -282,6 +282,7 @@ val is_type_string :
 val typeof : ?comment:string -> t -> t
 
 val to_int32 : ?comment:string -> t -> t
+val nint : ?comment:string -> nativeint -> t 
 val to_uint32 : ?comment:string -> t -> t
 
 val unchecked_int32_add : ?comment:string -> t -> t -> t

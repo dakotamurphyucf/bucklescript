@@ -283,7 +283,7 @@ and size_constant x =
   match x with
   | Const_int _ | Const_char _
 
-  | Const_float _  | Const_int64 _
+  | Const_float _  | Const_int64 _ | Const_nativeint _
   | Const_pointer _
   | Const_js_null | Const_js_undefined | Const_module_alias
   | Const_js_true | Const_js_false

@@ -218,7 +218,7 @@
 
   (rule
     (targets camlinternalFormat.cmj )
-    (deps (:inputs camlinternalFormat.ml) (alias ../../others/others) bool.cmj buffer.cmj bytes.cmj camlinternalFormat.cmi camlinternalFormatBasics.cmj char.cmj float.cmj int.cmj int32.cmj int64.cmj string.cmj sys.cmj)
+    (deps (:inputs camlinternalFormat.ml) (alias ../../others/others) bool.cmj buffer.cmj bytes.cmj camlinternalFormat.cmi camlinternalFormatBasics.cmj char.cmj float.cmj int.cmj int32.cmj int64.cmj nativeint.cmj string.cmj sys.cmj)
 
     (action
      (run %{workspace_root}/jscomp/main/js_main.exe -bs-read-cmi -bs-cmi -bs-cmj -no-keep-locs -no-alias-deps -bs-no-version-header -bs-no-check-div-by-zero -nostdlib  -bs-cross-module-opt -make-runtime -w -106 -warn-error A -I ../../runtime -I ../../others  -nopervasives -open Stdlib__no_aliases  -I . %{inputs})))
@@ -250,7 +250,7 @@
 
   (rule
     (targets camlinternalMod.cmj )
-    (deps (:inputs camlinternalMod.ml) (alias ../../others/others) array.cmj camlinternalMod.cmi camlinternalOO.cmj lazy.cmj obj.cmj sys.cmj)
+    (deps (:inputs camlinternalMod.ml) (alias ../../others/others) array.cmj camlinternalMod.cmi camlinternalOO.cmj lazy.cmj nativeint.cmj obj.cmj sys.cmj)
 
     (action
      (run %{workspace_root}/jscomp/main/js_main.exe -bs-read-cmi -bs-cmi -bs-cmj -no-keep-locs -no-alias-deps -bs-no-version-header -bs-no-check-div-by-zero -nostdlib  -bs-cross-module-opt -make-runtime -w -106 -warn-error A -I ../../runtime -I ../../others  -nopervasives -open Stdlib__no_aliases  -I . %{inputs})))
@@ -633,8 +633,24 @@
 
 
   (rule
+    (targets nativeint.cmj )
+    (deps (:inputs nativeint.ml) (alias ../../others/others) nativeint.cmi pervasives.cmj sys.cmj)
+
+    (action
+     (run %{workspace_root}/jscomp/main/js_main.exe -bs-read-cmi -bs-cmi -bs-cmj -no-keep-locs -no-alias-deps -bs-no-version-header -bs-no-check-div-by-zero -nostdlib  -bs-cross-module-opt -make-runtime -w -106 -warn-error A -I ../../runtime -I ../../others  -nopervasives -open Stdlib__no_aliases  -I . %{inputs})))
+
+
+  (rule
+    (targets nativeint.cmi )
+    (deps (:inputs nativeint.mli) (alias ../../others/others) stdlib__no_aliases.cmj)
+
+    (action
+     (run %{workspace_root}/jscomp/main/js_main.exe -bs-cmi -bs-cmj -no-keep-locs -no-alias-deps -bs-no-version-header -bs-no-check-div-by-zero -nostdlib  -bs-cross-module-opt -make-runtime -w -106 -warn-error A -I ../../runtime -I ../../others  -nopervasives -open Stdlib__no_aliases  -I . %{inputs})))
+
+
+  (rule
     (targets obj.cmj )
-    (deps (:inputs obj.ml) (alias ../../others/others) int32.cmj marshal.cmj obj.cmi sys.cmj)
+    (deps (:inputs obj.ml) (alias ../../others/others) int32.cmj marshal.cmj nativeint.cmj obj.cmi sys.cmj)
 
     (action
      (run %{workspace_root}/jscomp/main/js_main.exe -bs-read-cmi -bs-cmi -bs-cmj -no-keep-locs -no-alias-deps -bs-no-version-header -bs-no-check-div-by-zero -nostdlib  -bs-cross-module-opt -make-runtime -w -106 -warn-error A -I ../../runtime -I ../../others  -nopervasives -open Stdlib__no_aliases  -I . %{inputs})))
@@ -754,7 +770,7 @@
 
   (rule
     (targets random.cmj )
-    (deps (:inputs random.ml) (alias ../../others/others) array.cmj char.cmj digest.cmj int.cmj int32.cmj int64.cmj random.cmi)
+    (deps (:inputs random.ml) (alias ../../others/others) array.cmj char.cmj digest.cmj int.cmj int32.cmj int64.cmj nativeint.cmj random.cmi)
 
     (action
      (run %{workspace_root}/jscomp/main/js_main.exe -bs-read-cmi -bs-cmi -bs-cmj -no-keep-locs -no-alias-deps -bs-no-version-header -bs-no-check-div-by-zero -nostdlib  -bs-cross-module-opt -make-runtime -w -106 -warn-error A -I ../../runtime -I ../../others  -nopervasives -open Stdlib__no_aliases  -I . %{inputs})))
@@ -762,7 +778,7 @@
 
   (rule
     (targets random.cmi )
-    (deps (:inputs random.mli) (alias ../../others/others) int32.cmi int64.cmi stdlib__no_aliases.cmj)
+    (deps (:inputs random.mli) (alias ../../others/others) int32.cmi int64.cmi nativeint.cmi stdlib__no_aliases.cmj)
 
     (action
      (run %{workspace_root}/jscomp/main/js_main.exe -bs-cmi -bs-cmj -no-keep-locs -no-alias-deps -bs-no-version-header -bs-no-check-div-by-zero -nostdlib  -bs-cross-module-opt -make-runtime -w -106 -warn-error A -I ../../runtime -I ../../others  -nopervasives -open Stdlib__no_aliases  -I . %{inputs})))
@@ -986,5 +1002,5 @@
 
     (alias
       (name stdlib)
-      (deps camlinternalFormatBasics.cmi camlinternalFormatBasics.cmj stdlib__no_aliases.cmi arg.cmi arg.cmj array.cmi array.cmj arrayLabels.cmi arrayLabels.cmj atomic.cmi atomic.cmj bigarray.cmi bigarray.cmj bool.cmi bool.cmj buffer.cmi buffer.cmj bytes.cmi bytes.cmj bytesLabels.cmi bytesLabels.cmj callback.cmi callback.cmj camlinternalBigarray.cmi camlinternalBigarray.cmj camlinternalFormat.cmi camlinternalFormat.cmj camlinternalLazy.cmi camlinternalLazy.cmj camlinternalMod.cmi camlinternalMod.cmj camlinternalOO.cmi camlinternalOO.cmj char.cmi char.cmj complex.cmi complex.cmj digest.cmi digest.cmj either.cmi either.cmj ephemeron.cmi ephemeron.cmj filename.cmi filename.cmj float.cmi float.cmj format.cmi format.cmj fun.cmi fun.cmj gc.cmi gc.cmj genlex.cmi genlex.cmj hashtbl.cmi hashtbl.cmj int.cmi int.cmj int32.cmi int32.cmj int64.cmi int64.cmj lazy.cmi lazy.cmj lexing.cmi lexing.cmj list.cmi list.cmj listLabels.cmi listLabels.cmj map.cmi map.cmj marshal.cmi marshal.cmj moreLabels.cmi moreLabels.cmj obj.cmi obj.cmj oo.cmi oo.cmj option.cmi option.cmj parsing.cmi parsing.cmj pervasives.cmi pervasives.cmj printexc.cmi printexc.cmj printf.cmi printf.cmj queue.cmi queue.cmj random.cmi random.cmj result.cmi result.cmj scanf.cmi scanf.cmj seq.cmi seq.cmj set.cmi set.cmj stack.cmi stack.cmj stdLabels.cmi stdLabels.cmj std_exit.cmi std_exit.cmj stream.cmi stream.cmj string.cmi string.cmj stringLabels.cmi stringLabels.cmj sys.cmi sys.cmj uchar.cmi uchar.cmj unit.cmi unit.cmj weak.cmi weak.cmj))
+      (deps camlinternalFormatBasics.cmi camlinternalFormatBasics.cmj stdlib__no_aliases.cmi arg.cmi arg.cmj array.cmi array.cmj arrayLabels.cmi arrayLabels.cmj atomic.cmi atomic.cmj bigarray.cmi bigarray.cmj bool.cmi bool.cmj buffer.cmi buffer.cmj bytes.cmi bytes.cmj bytesLabels.cmi bytesLabels.cmj callback.cmi callback.cmj camlinternalBigarray.cmi camlinternalBigarray.cmj camlinternalFormat.cmi camlinternalFormat.cmj camlinternalLazy.cmi camlinternalLazy.cmj camlinternalMod.cmi camlinternalMod.cmj camlinternalOO.cmi camlinternalOO.cmj char.cmi char.cmj complex.cmi complex.cmj digest.cmi digest.cmj either.cmi either.cmj ephemeron.cmi ephemeron.cmj filename.cmi filename.cmj float.cmi float.cmj format.cmi format.cmj fun.cmi fun.cmj gc.cmi gc.cmj genlex.cmi genlex.cmj hashtbl.cmi hashtbl.cmj int.cmi int.cmj int32.cmi int32.cmj int64.cmi int64.cmj lazy.cmi lazy.cmj lexing.cmi lexing.cmj list.cmi list.cmj listLabels.cmi listLabels.cmj map.cmi map.cmj marshal.cmi marshal.cmj moreLabels.cmi moreLabels.cmj nativeint.cmi nativeint.cmj obj.cmi obj.cmj oo.cmi oo.cmj option.cmi option.cmj parsing.cmi parsing.cmj pervasives.cmi pervasives.cmj printexc.cmi printexc.cmj printf.cmi printf.cmj queue.cmi queue.cmj random.cmi random.cmj result.cmi result.cmj scanf.cmi scanf.cmj seq.cmi seq.cmj set.cmi set.cmj stack.cmi stack.cmj stdLabels.cmi stdLabels.cmj std_exit.cmi std_exit.cmj stream.cmi stream.cmj string.cmi string.cmj stringLabels.cmi stringLabels.cmj sys.cmi sys.cmj uchar.cmi uchar.cmj unit.cmi unit.cmj weak.cmi weak.cmj))
   

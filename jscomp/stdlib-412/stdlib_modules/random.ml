@@ -127,12 +127,12 @@ module State = struct
     else int64aux s bound
 
 
-#if 0 then
+
   let nativeint =
     if Nativeint.size = 32
     then fun s bound -> Nativeint.of_int32 (int32 s (Nativeint.to_int32 bound))
     else fun s bound -> Int64.to_nativeint (int64 s (Int64.of_nativeint bound))
-#end
+
 
 
   (* Returns a float 0 <= x <= 1 with at most 60 bits of precision. *)

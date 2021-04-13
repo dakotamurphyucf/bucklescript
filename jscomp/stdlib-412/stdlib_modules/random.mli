@@ -92,9 +92,9 @@ module State : sig
   val bits : t -> int
   val int : t -> int -> int
   val int32 : t -> Int32.t -> Int32.t
-#if 0 then
+
   val nativeint : t -> Nativeint.t -> Nativeint.t
-#end
+
   val int64 : t -> Int64.t -> Int64.t
   val float : t -> float -> float
   val bool : t -> bool

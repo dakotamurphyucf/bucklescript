@@ -15,10 +15,7 @@ module Char         = Char
 module Complex      = Complex
 module Digest       = Digest
 module Either       = Either
-#if BS then
-#else
 module Ephemeron    = Ephemeron
-#end
 module Filename     = Filename
 module Float        = Float
 module Format       = Format
@@ -36,10 +33,7 @@ module ListLabels   = ListLabels
 module Map          = Map
 module Marshal      = Marshal
 module MoreLabels   = MoreLabels
-#if BS then
-#else
 module Nativeint    = Nativeint
-#end
 module Obj          = Obj
 module Oo           = Oo
 module Option       = Option

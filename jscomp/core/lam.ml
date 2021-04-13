@@ -726,6 +726,9 @@ let rec eval_const_as_bool (v : Lam_constant.t ) : bool =
     Char.code x <> 0
   |  (Const_int64 x) ->
     x <> 0L
+  | (Const_nativeint x) ->
+    (* look into this to make sure it is right *)
+    x <> 0n
   | Const_js_false
   | Const_js_null
   | Const_module_alias

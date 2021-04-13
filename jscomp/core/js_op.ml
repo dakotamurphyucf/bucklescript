@@ -161,6 +161,7 @@ type number =
   | Float of float_lit 
   | Int of { i  : int32; c : char option}
   | Uint of int32
+  | Nint of nativeint
 
   (* becareful when constant folding +/-, 
      since we treat it as js nativeint, bitwise operators:
